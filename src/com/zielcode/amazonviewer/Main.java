@@ -1,7 +1,6 @@
 package com.zielcode.amazonviewer;
 
 import java.util.Date;
-import java.util.Scanner;
 
 import com.zielcode.amazonviewer.model.Movie;
 
@@ -9,8 +8,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Movie movie = new Movie("Coco", "Animation", (short)2017);
-		movie.showData();
+		//Movie movie = new Movie("Coco", "Animation", (short)2017);
+		//movie.showData();
+		Movie movie = new Movie("Coco", "Animation", "", 120, (short)2017);
+		System.out.println(movie);
+		
 		//showMenu();
 
 		
@@ -20,7 +22,6 @@ public class Main {
 		public static void showMenu() {
 			int exit = 0;
 			do {
-				Scanner sc = new Scanner(System.in);
 				
 				System.out.println("BIENVENIDOS AMAZON VIEWER");
 				System.err.println("");
