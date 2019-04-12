@@ -1,5 +1,5 @@
 package com.zielcode.amazonviewer.model;
-
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Movie extends Film implements IVisualizable {
@@ -51,12 +51,24 @@ public class Movie extends Film implements IVisualizable {
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
 		// TODO Auto-generated method stub
-		if(dateF.getSeconds() > dateI.getSeconds()) {
-			setTimeViewed(dateF.getSeconds() - dateI.getSeconds());
+		
+		if (dateF.getTime() > dateI.getTime()) {
+			setTimeViewed((int)(dateF.getTime() - dateI.getTime()));
 		}else {
 			setTimeViewed(0);
 		}
 		
+		
+	}
+	
+	public static ArrayList<Movie> makeMoviesList() {
+		ArrayList<Movie> movies = new ArrayList();
+		
+		for (int i = 1; i <= 5; i++) {
+			movies.add(new Movie("Movie " + i, "Genero " + i, "Creador " + i, 120+i, (short)(2017+i)));
+		}
+		
+		return movies;
 	}
 	
 }

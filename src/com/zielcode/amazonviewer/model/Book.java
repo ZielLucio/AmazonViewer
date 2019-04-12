@@ -75,12 +75,11 @@ public class Book extends Publication implements IVisualizable {
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
 		// TODO Auto-generated method stub
-		if(dateF.getSeconds() > dateI.getSeconds()) {
+		if (dateF.getSeconds() > dateI.getSeconds()) {
 			setTimeReaded(dateF.getSeconds() - dateI.getSeconds());
 		}else {
 			setTimeReaded(0);
 		}
-		
 	}
 	
 }
