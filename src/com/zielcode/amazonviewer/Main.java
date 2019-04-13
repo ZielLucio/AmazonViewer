@@ -1,4 +1,5 @@
 package com.zielcode.amazonviewer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -95,19 +96,23 @@ public class Main {
 				showMenu();
 			}
 			
-			Movie movieSelected = movies.get(response-1);
-			movieSelected.setViewed(true);
-			Date dateI = movieSelected.startToSee(new Date());
-			
-			for (int i = 0; i < 100000; i++) {
-				System.out.println("..........");
+			if(response > 0) {
+				Movie movieSelected = movies.get(response-1);
+				movieSelected.setViewed(true);
+				Date dateI = movieSelected.startToSee(new Date());
+				
+				for (int i = 0; i < 100000; i++) {
+					System.out.println("..........");
+				}
+				
+				//Termine de verla
+				movieSelected.stopToSee(dateI, new Date());
+				System.out.println();
+				System.out.println("Viste: " + movieSelected);
+				System.out.println("Por: " + movieSelected.getTimeViewed() + " milisegundos");
 			}
 			
-			//Termine de verla
-			movieSelected.stopToSee(dateI, new Date());
-			System.out.println();
-			System.out.println("Viste: " + movieSelected);
-			System.out.println("Por: " + movieSelected.getTimeViewed() + " milisegundos");
+			
 			
 			
 		}while(exit !=0);
@@ -206,13 +211,38 @@ public class Main {
 		report.setExtension(".txt");
 		report.setTitle(":: VISTOS ::");
 		String contentReport = "";
+		
 		for (Movie movie : movies) {
-			
+			if(movie.getIsViewd()) {
+				contentReport += movie.toString() + "\n"; 
+				
+			}
 		}
+		report.setContent(contentReport);
+		report.makeReport();
+		
 		
 	}
 	
 	public static void makeReport(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		String dateString = df.format(date);
+		Report report = new Report();
+		
+		report.setNameFile("reporte "+ dateString );
+		
+		report.setExtension(".txt");
+		report.setTitle(":: VISTOS ::");
+		String contentReport = "";
+		
+		for (Movie movie : movies) {
+			if(movie.getIsViewd()) {
+				contentReport += movie.toString() + "\n"; 
+				
+			}
+		}
+		report.setContent(contentReport);
+		report.makeReport();
 		
 	}
 	
